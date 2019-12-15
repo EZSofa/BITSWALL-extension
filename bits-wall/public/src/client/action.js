@@ -43,7 +43,7 @@ class Action {
         }
         else{
             let foundBrick = this.state.bricks.find((b)=>{
-                return b.id === 1
+                return b.id === brick.id
             })
             
             if(foundBrick){
