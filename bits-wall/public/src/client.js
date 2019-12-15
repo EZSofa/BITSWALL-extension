@@ -20,20 +20,7 @@ _GLOBAL.burst02.src = './imgs/burst002.png'
 _GLOBAL.burst03.src = './imgs/burst003.png'
 
 console.log('global', _GLOBAL)
-bits.onTransactionComplete(function (o){
-  const productType = o.product.sku;
-  console.log(`Transaction ${productType} complete`);
-  console.log(o);
-  if(_GLOBAL.handlingBrick){
-    breakBrick(_GLOBAL.handlingBrick.id, _GLOBAL.channelId)
-  }
-  // Explore
-});
 
-bits.onTransactionCancelled((o)=>{
-  console.log(`Transaction ${JSON.stringify(o)} cancel`);
-  console.log(o);
-});
 
 window.onload = function(){
   this.console.log("Hello Twitch Hackthon!!")
