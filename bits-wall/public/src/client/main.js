@@ -63,7 +63,7 @@ const initAPI = function (domain) {
     return new API(domain)
 }
 
-const initBits = function (bits) {
+const initBits = function () {
     return window.Twitch.ext.bits;
 }
 
