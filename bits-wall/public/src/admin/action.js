@@ -11,11 +11,13 @@ class Action {
 
 
     addBit = (type) => {
-        let fObj = new fabric.Image(this.global.brick_info[type].image, {
+        let fObj = new fabric.BitWallsImage(this.global.brick_info[type].image, {
             left: 0,
             top: 0,
             scaleX: .5,
             scaleY: .5,
+            active: false,
+            price: 50
         })
 
         this.state.fcanvas.add(fObj)
