@@ -73,7 +73,7 @@ class Action {
             type: 'POST',
             url: 'https://twi.eztable.com/createWall',
             data: JSON.stringify(requestData),
-            success: function (data) {
+            success: function(data) {
                 console.log('ssuio');
                 console.log(data);
             },
@@ -89,13 +89,12 @@ class Action {
         const bitsWall = convert2BrickData()
         if (!bitsWall) {
             setting.bitsWall = []
-        }
-        else {
+        } else {
             setting.bitsWall = bitsWall
         }
         twitch.rig.log('setting')
         twitch.rig.log(setting)
-        console.log('setting', typeof (setting), setting)
+        console.log('setting', typeof(setting), setting)
         setChannelConfig(setting)
     }
 
@@ -116,6 +115,7 @@ class Action {
     handleSetBackgroundImage = (e) => {
         this.state.backgroundImage = e.target.result
 
+        this.api.addImage(this.state.channelId)
         let image = new Image()
         image.src = this.state.backgroundImage
         image.onload = () => {
@@ -148,8 +148,7 @@ class Action {
             twitch.rig.log(twitch.configuration);
             twitch.rig.log('yes');
 
-        }
-        else {
+        } else {
             twitch.rig.log('nonono');
         }
 
@@ -177,8 +176,7 @@ class Action {
         let json;
         if (twitch.configuration.broadcaster && 'content' in twitch.configuration.broadcaster) {
             json = JSON.parse(twitch.configuration.broadcaster.content)
-        }
-        else {
+        } else {
             console.log('twitch.configuration', twitch.configuration)
             twitch.rig.log(twitch.configuration)
 
