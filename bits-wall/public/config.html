@@ -3,16 +3,76 @@
 
 <head>
     <title>Welcome to Bits Wall</title>
-    <link rel="stylesheet" type="text/css" href="./css/header.css">
-    <link rel="stylesheet" type="text/css" href="./css/menu.css">
-    <link rel="stylesheet" href="./css/w3.css">
-    <script src="./js/menu.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./css/header.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/menu.css"> -->
+    <!-- <link rel="stylesheet" href="./css/w3.css"> -->
+    <!-- <script src="./js/menu.js"></script> -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+
 </head>
 
 <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-    <!-- <script src="./js/twitch-ext.min.js"></script> -->
+
+    <!-- <header>
+        <span id="menuButton" onclick="toggleNav()">&#9776;</span>
+        <div class="navbar">
+            <h2><img src="./imgs/brick-wall.svg" /></h2>
+        </div>
+    </header> -->
+
+
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" id="home-nav">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item" id="launch-nav">
+                    <a class="nav-link" href="#">Launch</a>
+                </li>
+                <li class="nav-item" id="album-nav">
+                    <a class="nav-link" href="#">Album</a>
+                </li>
+                <li class="nav-report" id="report-nav">
+                    <a class="nav-link" href="#">Report</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div id="home-page">
+            <h2> This is home-page </h2>
+        </div>
+
+        <div id="launch-page">
+            <h2>This is launch page</h2>
+            <canvas id="canvas">
+
+            </canvas>
+        </div>
+
+        <div id="album-page">
+            <h2> This is album page</h2>
+        </div>
+
+        <div id="report-page">
+            <h2> Report Page </h2>
+        </div>
+    </main>
+
+
+    <script src="./libs/jquery-3.4.1.slim.min.js"></script>
+    <script src="./libs/popper.min.js"></script>
+    <script src="./libs/bootstrap.min.js"></script>
+    <script src="./js/twitch-ext.min.js"></script>
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script src="./libs/jquery-3.3.1.min.js"></script>
     <script src="./libs/fabric.min.js"></script>
     <script src="./src/share/fabric-extend.js"></script>
     <script src="./src/share/domain.js"></script>
@@ -21,52 +81,6 @@
     <script src="./src/admin/api.js"></script>
     <script src="./src/admin/action.js"></script>
     <script src="./src/admin/main.js"></script>
-    <header>
-        <!-- <span id="menuButton" onclick="toggleNav()">&#9776;</span> -->
-        <div class="navbar">
-            <h2><img src="./imgs/brick-wall.svg" /></h2>
-        </div>
-    </header>
-
-    <div id="content">
-        <h3> Welcome to Brick Wall </h3>
-        <p> 1. Upload a screen shot as background before building up your customized wall
-            <form id="form" runat="server">
-                <input id="file" type="file" />
-                <!-- style="display: none" -->
-                <!-- <button class="w3-button w3-medium w3-deep-orange" onclick="file.click()">Upload Image</button> -->
-            </form>
-        </p>
-        <p> 2. Click & Drap : place your bricks wherever you want in any scales & angles</p>
-        <p> 3. Don't forget to store your master piece!!</p>
-        <p> 4. Launch you Bits Wall as long as you're ready</p>
-
-        <div class="w3-center">
-            <button id='bit1'>
-                <img src="./imgs/_1.png" />
-            </button>
-            <button id='bit100'>
-                <img src="./imgs/_100.png" />
-            </button>
-            <button id='bit1000'>
-                <img src="./imgs/_1000.png" />
-            </button>
-            <button id='bit5000'>
-                <img src="./imgs//_5000.png" />
-            </button>
-            <button id='bit10000'>
-                <img src="./imgs/_10000.png" />
-            </button>
-        </div>
-        <canvas id="canvas" width=1280 height=720></canvas>
-        <div class="w3-center">
-            <div class="w3-bar">
-                <button id="save" class="w3-button w3-medium w3-orange">Save Wall</button>
-                <button id="launch" class="w3-button w3-medium w3-amber">Launch</button>
-            </div>
-        </div>
-    </div>
-
 
 </body>
 

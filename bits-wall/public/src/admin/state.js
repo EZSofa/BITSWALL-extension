@@ -1,5 +1,5 @@
-class State{
-    constructor(){
+class State {
+    constructor() {
         this.vh = null
         this.vw = null
         this.canvas = null
@@ -10,5 +10,12 @@ class State{
         this.userId = null
         this.channelId = 43797122
         this.config = {}
+
+        this.pages = [
+            $('#home-page'),
+            $('#launch-page'),
+            $('#album-page'),
+            $('#report-page')
+        ];
     }
 }

@@ -9,6 +9,13 @@ class Action {
         this.handleUploadImage = this.handleUploadImage.bind(this)
     }
 
+    navPage = (id) => {
+        console.log('nnxxx')
+        this.state.pages.forEach((page) => {
+            page.hide();
+        });
+        $(id).show();
+    }
 
     addBit = (type) => {
         let fObj = new fabric.BitWallsImage(this.global.brick_info[type].image, {
