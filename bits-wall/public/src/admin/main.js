@@ -55,7 +55,9 @@ const initTwitch = () => {
 }
 
 const initPage = (action) => {
-    action.navPage('#home-page')
+    action.navPage('#home-page');
+
+    action.renderTemplateList();
 }
 
 const initFabricCanvas = (state, action) => {
@@ -171,9 +173,11 @@ const registerDOMAction = (action) => {
     //   action.launchBrickSetting();
     // })
 
-    $('#home-nav').on("click", () => action.navPage('#home-page'));
-    $('#launch-nav').on("click", () => action.navPage('#launch-page'));
-    $('#album-nav').on("click", () => action.navPage('#album-page'));
+    $('#home-nav').on('click', () => action.navPage('#home-page'));
+    $('#launch-nav').on('click', () => action.navPage('#launch-page'));
+    $('#album-nav').on('click', () => action.navPage('#album-page'));
     $('#report-nav').on('click', () => action.navPage('#report-page'));
+    $('#confirm-create-template').on('click', () => action.handleCreateTemplate());
 
+    action.navPage('#launch-page')
 }

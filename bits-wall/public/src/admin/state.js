@@ -10,6 +10,8 @@ class State {
         this.userId = null
         this.channelId = 43797122
         this.config = {}
+        this.brickTemplate = {}
+        this.bricks = {}
 
         this.pages = [
             $('#home-page'),

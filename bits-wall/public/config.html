@@ -9,6 +9,7 @@
     <!-- <script src="./js/menu.js"></script> -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/admin.css">
 
 </head>
 
@@ -48,11 +49,17 @@
 
     <main>
         <div id="home-page">
-            <h2> This is home-page </h2>
+            <p>The dashboard show about the using.....</p>
         </div>
 
         <div id="launch-page">
             <h2>This is launch page</h2>
+
+
+            <h3>My cases :</h3>
+            <div id="template-list">
+
+            </div>
             <canvas id="canvas">
 
             </canvas>
@@ -65,16 +72,47 @@
         <div id="report-page">
             <h2> Report Page </h2>
         </div>
+
+
+        <div class="modal fade" id="add-tempalte-modal" tabindex="-1" role="dialog" aria-labelledby="addTemplateModaLtITLE" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTemplateModaLtITLE">Add New Bricks</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="new-template-title">Title:</label>
+                                <input type="text" class="form-control" id="new-template-title" placeholder="Make a good title for your bricks">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-template-description">Description</label>
+                                <textarea class="form-control" id="new-template-description" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="confirm-create-template">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 
-    <script src="./libs/jquery-3.4.1.slim.min.js"></script>
+    <script src="./libs/jquery-3.4.1.min.js"></script>
     <script src="./libs/popper.min.js"></script>
     <script src="./libs/bootstrap.min.js"></script>
     <script src="./js/twitch-ext.min.js"></script>
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
     <script src="./libs/fabric.min.js"></script>
     <script src="./src/share/fabric-extend.js"></script>
+    <script src="./src/share/modal.js"></script>
     <script src="./src/share/domain.js"></script>
     <script src="./src/share/global.js"></script>
     <script src="./src/admin/state.js"></script>

@@ -10,12 +10,78 @@ class Action {
     }
 
     navPage = (id) => {
-        console.log('nnxxx')
         this.state.pages.forEach((page) => {
             page.hide();
         });
         $(id).show();
     }
+
+    renderTemplateList = async() => {
+        this.state.brickTemplates = await this.api.getBrickTemplateList(this.state.channelId) || {};
+
+        let templateListElement = $('#template-list')
+        templateListElement.empty();
+
+        for (let uuid in this.state.brickTemplates) {
+            let brickTemplate = new BrickTemplate(this.state.brickTemplates[uuid]);
+
+            let templateElement = $(`
+                <div class="card" style="width: 18rem;">
+                    <img src=${brickTemplate.image} class="card-img-top" alt="image alt....">
+                    <div class="card-body">
+                    <h5 class="card-title">${brickTemplate.title}</h5>
+                    <p class="card-text">${brickTemplate.description}</p>
+                    </div>
+                </div>
+            `);
+
+            templateElement.on('click', () => this.handleSelectTemplate(uuid));
+            console.log('templateElement', templateElement)
+            templateListElement.append(templateElement);
+        }
+
+        let addTemplateElement = $(`
+        <div class= "card" style="width: 18rem;" >
+        ++++++++++
+        </div>
+        `)
+
+        addTemplateElement.on('click', () => {
+            console.log('add Template Element go go go!!');
+            $('#add-tempalte-modal').modal('show');
+        });
+        templateListElement.append(addTemplateElement)
+
+    }
+
+    handleSelectTemplate = (index) => {
+        console.log('index', index);
+        this.state.bricks = this.state.brickTemplateList[index];
+        this.renderFabricCanvas();
+    }
+
+    handleCreateTemplate = () => {
+        console.log('handleCreateTemplate');
+        let title = $('#new-template-title').val() || '';
+        let description = $('#new-template-description').val() || '';
+
+        this.api.createBrickTemplate(this.state.channelId, { title, description })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    renderFabricCanvas = () => {
+
+        this.state.fcanvas.clear();
+
+        // push bricks on this.state.bricks to fcanvas
+        console.log(this.state.bricks);
+    }
+
 
     addBit = (type) => {
         let fObj = new fabric.BitWallsImage(this.global.brick_info[type].image, {
