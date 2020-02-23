@@ -17,8 +17,18 @@ class Action {
     }
 
     renderTemplateList = async() => {
-        this.state.brickTemplates = await this.api.getBrickTemplateList(this.state.channelId) || {};
+        this.state.brickTemplates = await this.api.getBrickTemplateList(this.state.channelId)
+            .then((templates) => {
+                let brickTemplates = {};
+                if (templates) {
+                    for (let uuid in templates) {
+                        brickTemplates[uuid] = new BrickTemplate(templates[uuid]);
+                    }
+                }
+                return brickTemplates;
+            });
 
+        console.log('this.state.brickTemplates', this.state.brickTemplates)
         let templateListElement = $('#template-list')
         templateListElement.empty();
 
@@ -26,7 +36,7 @@ class Action {
             let brickTemplate = new BrickTemplate(this.state.brickTemplates[uuid]);
 
             let templateElement = $(`
-                <div class="card" style="width: 18rem;">
+                <div class="card col-lg-3" >
                     <img src=${brickTemplate.image} class="card-img-top" alt="image alt....">
                     <div class="card-body">
                     <h5 class="card-title">${brickTemplate.title}</h5>
@@ -36,12 +46,11 @@ class Action {
             `);
 
             templateElement.on('click', () => this.handleSelectTemplate(uuid));
-            console.log('templateElement', templateElement)
             templateListElement.append(templateElement);
         }
 
         let addTemplateElement = $(`
-        <div class= "card" style="width: 18rem;" >
+        <div class= "card col-lg-3" >
         ++++++++++
         </div>
         `)
@@ -54,24 +63,85 @@ class Action {
 
     }
 
-    handleSelectTemplate = (index) => {
-        console.log('index', index);
-        this.state.bricks = this.state.brickTemplateList[index];
-        this.renderFabricCanvas();
+    handleSelectTemplate = (uuid) => {
+        console.log('selected uuid = ', uuid);
+        this.state.selectedBrickTemplate = this.state.brickTemplates[uuid];
+        console.log('this.state.selectedBrickTemplate', this.state.selectedBrickTemplate)
+            // this.renderFabricCanvas();
     }
 
     handleCreateTemplate = () => {
-        console.log('handleCreateTemplate');
-        let title = $('#new-template-title').val() || '';
-        let description = $('#new-template-description').val() || '';
+        let title = $('#new-template-title').val();
+        let description = $('#new-template-description').val();
 
-        this.api.createBrickTemplate(this.state.channelId, { title, description })
+        let brickTemplate = new BrickTemplate({
+            title,
+            description
+        });
+
+        console.log('brickTemplate', brickTemplate)
+        this.api.createBrickTemplate(this.state.channelId, brickTemplate)
             .then((data) => {
                 console.log(data);
+                this.renderTemplateList();
+                $('#add-tempalte-modal').modal('hide');
             })
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    handleLaunchBrick = () => {
+        console.log('handle launch Brick')
+        const selectedBrickTemplate = this.state.selectedBrickTemplate;
+        console.log('selectedBrickTemplate', selectedBrickTemplate);
+
+        if (!selectedBrickTemplate || selectedBrickTemplate.id === '') {
+            alert('You do not select any tempalte');
+            return;
+        }
+
+        this.api.launchBrick(this.state.channelId, this.state.selectedBrickTemplate)
+            .then((result) => {
+                console.log('launch result', result);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    handleUpdateTemplate = () => {
+        console.log('handleUpdateTemplate')
+        const selectedBrickTemplate = this.state.selectedBrickTemplate;
+        console.log('selectedBrickTemplate', selectedBrickTemplate);
+        selectedBrickTemplate.title = `(save) ${selectedBrickTemplate.title}`;
+
+        if (!selectedBrickTemplate || selectedBrickTemplate.id === '') {
+            alert('You do not select any tempalte');
+            return;
+        }
+
+        this.api.updateTemplate(this.state.channelId, this.state.selectedBrickTemplate)
+            .then((result) => {
+                console.log('update result', result);
+                this.renderTemplateList();
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    handleJoinBrickToCanvas = () => {
+        let fObj = new fabric.BitWallsImage(this.global.brick_info['TRIANGLE'].image, {
+            left: 0,
+            top: 0,
+            scaleX: .5,
+            scaleY: .5,
+            active: false,
+            price: 50
+        })
+
+        this.state.fcanvas.add(fObj)
     }
 
     renderFabricCanvas = () => {

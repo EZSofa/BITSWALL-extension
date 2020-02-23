@@ -1,3 +1,11 @@
 #template-list .card {
     width: 10px
 }
+
+
+/* border helping webiset: https://html-css-js.com/css/generator/border-outline/ */
+
+.canvas-container {
+    width: 100px;
+    border: 11px dashed rgba(28, 110, 164, 0.6);
+}

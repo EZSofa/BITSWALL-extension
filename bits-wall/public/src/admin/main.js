@@ -1,5 +1,6 @@
 const _config = {
     domain: 'https://us-central1-bitswall-8478f.cloudfunctions.net/bitsWalls',
+    // domain: 'http://localhost:4000'
 }
 
 let
@@ -62,13 +63,17 @@ const initPage = (action) => {
 
 const initFabricCanvas = (state, action) => {
     state.canvas = document.getElementById('canvas');
-    state.vh = 1280;
-    state.vw = 1980;
-    state.canvas.width = state.vw;
-    state.canvas.height = state.vh;
+    state.vh = 768;
+    state.vw = 1024;
+    // state.canvas.width = state.vw;
+    // state.canvas.height = state.vh;
     state.ctx = state.canvas.getContext('2d');
 
     state.fcanvas = new fabric.Canvas('canvas');
+    state.fcanvas.setDimensions({
+        width: state.vw,
+        height: state.vh
+    });
     state.fctx = state.fcanvas.getContext('2d');
     state.fcanvas.on('selection:created', console.log('hi'));
 }
@@ -178,6 +183,9 @@ const registerDOMAction = (action) => {
     $('#album-nav').on('click', () => action.navPage('#album-page'));
     $('#report-nav').on('click', () => action.navPage('#report-page'));
     $('#confirm-create-template').on('click', () => action.handleCreateTemplate());
+    $('#testing-button').on('click', () => action.handleJoinBrickToCanvas());
+    $('#save-template').on('click', () => action.handleUpdateTemplate());
+    $('#launch-template').on('click', () => action.handleLaunchBrick());
 
     action.navPage('#launch-page')
 }

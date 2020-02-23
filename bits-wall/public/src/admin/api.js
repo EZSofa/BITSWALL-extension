@@ -15,22 +15,53 @@ class API {
         })
     }
 
-    createBrickTemplate(channelId, template) {
+    createBrickTemplate(channelId, brickTemplate) {
         return new Promise((resolve, reject) => {
             $.ajax({
                     method: 'POST',
                     url: `${this.domain}/brickTemplates/${channelId}`,
-                    data: template
+                    data: brickTemplate
                 })
                 .done((result) => {
-                    resolve(result)
+                    resolve(result);
                 })
                 .fail((err) => {
-                    reject(err)
+                    reject(err);
                 })
         });
     }
 
+    launchBrick(channelID, brickTemplate) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                    method: 'POST',
+                    url: `${this.domain}/launching/${channelID}`,
+                    data: brickTemplate
+                })
+                .done((result) => {
+                    resolve(result);
+                })
+                .fail((err) => {
+                    reject(err);
+                })
+        })
+    }
+
+    updateTemplate(channelID, brickTemplate) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                    method: 'PUT',
+                    url: `${this.domain}/brickTemplates/${channelID}`,
+                    data: brickTemplate
+                })
+                .done((result) => {
+                    resolve(result);
+                })
+                .fail((err) => {
+                    reject(err);
+                })
+        })
+    }
     addImage(channelId, pic) {
         // $.ajax()
     }

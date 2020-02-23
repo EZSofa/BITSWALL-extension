@@ -52,17 +52,28 @@
             <p>The dashboard show about the using.....</p>
         </div>
 
-        <div id="launch-page">
+        <div id="launch-page" class="container">
             <h2>This is launch page</h2>
 
 
             <h3>My cases :</h3>
-            <div id="template-list">
+            <div id="template-list" class="row">
 
             </div>
+            <br />
+            <button class="btn btn-secondary" type="button" id="upload-background">Upload Background</button>
+            <button class="btn btn-primary" type="button" id="testing-button">TESTING</button>
+            <br /><br />
             <canvas id="canvas">
 
             </canvas>
+            <br /><br />
+            <div class="offset-md-4">
+
+                <button class="btn btn-secondary" type="button" id="save-template"> Save Template </button>
+                <button class="btn btn-primary" type="button" id="launch-template"> Launch Template </button>
+            </div>
+            <br /><br />
         </div>
 
         <div id="album-page">
@@ -112,8 +123,7 @@
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
     <script src="./libs/fabric.min.js"></script>
     <script src="./src/share/fabric-extend.js"></script>
-    <script src="./src/share/modal.js"></script>
-    <script src="./src/share/domain.js"></script>
+    <script src="./src/share/model.js"></script>
     <script src="./src/share/global.js"></script>
     <script src="./src/admin/state.js"></script>
     <script src="./src/admin/api.js"></script>
