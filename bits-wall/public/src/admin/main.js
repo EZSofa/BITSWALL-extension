@@ -75,7 +75,8 @@ const initFabricCanvas = (state, action) => {
         height: state.vh
     });
     state.fctx = state.fcanvas.getContext('2d');
-    state.fcanvas.on('selection:created', console.log('hi'));
+
+    state.fcanvas.on('selection:created', action.handleSelectBrick);
 }
 
 const registerTwitchAction = (twitch, action) => {
@@ -186,6 +187,21 @@ const registerDOMAction = (action) => {
     $('#testing-button').on('click', () => action.handleJoinBrickToCanvas());
     $('#save-template').on('click', () => action.handleUpdateTemplate());
     $('#launch-template').on('click', () => action.handleLaunchBrick());
+    $('#open-edit-modal').on('click', () => {
+        $('#brick-edit-modal').modal({
+                backdrop: false,
+                keyboard: false,
+                focus: true
+            })
+            .draggable({
+                handle: ".modal-header"
+            })
+    })
+
+    $('#brick-edit-modal').on('show.bs.modal', (a) => {
+        $('body').css({ overflow: 'visible' })
+    });
+
 
     action.navPage('#launch-page')
 }

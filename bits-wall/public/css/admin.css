@@ -9,3 +9,15 @@
     width: 100px;
     border: 11px dashed rgba(28, 110, 164, 0.6);
 }
+
+body.modal-open {
+    overflow: hidden;
+}
+
+#brick-edit-modal {
+    width: 25vw;
+    position: fixed;
+    top: 10vw;
+    left: 75vw;
+    overflow-y: auto;
+}

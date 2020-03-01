@@ -131,6 +131,10 @@ class Action {
             })
     }
 
+    handleSelectBrick = (info) => {
+        console.log('info', info);
+    }
+
     handleJoinBrickToCanvas = () => {
         let fObj = new fabric.BitWallsImage(this.global.brick_info['TRIANGLE'].image, {
             left: 0,

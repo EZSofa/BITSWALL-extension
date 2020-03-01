@@ -63,6 +63,7 @@
             <br />
             <button class="btn btn-secondary" type="button" id="upload-background">Upload Background</button>
             <button class="btn btn-primary" type="button" id="testing-button">TESTING</button>
+            <button class="btn btn-primary" type="button" id="open-edit-modal">OPEN EDIT MODAL</button>
             <br /><br />
             <canvas id="canvas">
 
@@ -113,10 +114,87 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="brick-edit-modal" tabindex="-1" role="dialog" aria-labelledby="brickEditModal" aria-hidden="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Brick</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="editing-id" class="col-sm-3 col-form-label-sm">ID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control-sm" readonly class="form-control-plaintext" id="editing-id" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="editing-x" class="col-sm-3 col-form-label-sm">X</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control-sm" id="editing-x">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="editing-y" class="col-sm-3 col-form-label-sm">Y</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control-sm" id="editing-y">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="editing-rotation" class="col-sm-3 col-form-label-sm">Rotate</label>
+                                <div class="col-sm-8">
+                                    <input type="range" class="form-control-sm" id="editing-rotation" min="0" max="360">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="editing-opacity" class="col-sm-3 col-form-label-sm">Opacity</label>
+                                <div class="col-sm-8">
+                                    <input type="range" class="form-control-sm" id="editing-opacity" min="0" max="100">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="editing-bits" class="col-sm-3 col-form-label-sm">Bits</label>
+                                <select class="custom-select col-sm-8" id="editing-bits">
+                                    <option value="1">1</option>
+                                    <option value="100">100</option>
+                                    <option value="1000">1000</option>
+                                    <option value="5000">5000</option>
+                                    <option value="10000">10000</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="editing-scale-x" class="col-sm-3 col-form-label-sm">scale-x</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control-sm" id="editing-scale-x">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="editing-scale-y" class="col-sm-3 col-form-label-sm">scale-y</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control-sm" id="editing-scale-y">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
 
     <script src="./libs/jquery-3.4.1.min.js"></script>
+    <script src="./libs/jquery-ui.min.js"></script>
     <script src="./libs/popper.min.js"></script>
     <script src="./libs/bootstrap.min.js"></script>
     <script src="./js/twitch-ext.min.js"></script>
